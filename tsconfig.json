@@ -11,7 +11,7 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["vite/client"],
-    "noEmit": true,
+    "noEmit": false,
     "isolatedModules": true,
     "noImplicitAny": true,        // Raise error on expressions and declarations with an implied 'any' type
     "strictNullChecks": true,     // When enabled, `null` and `undefined` have their types and are not assignable to other types (like `number` or `string`)
