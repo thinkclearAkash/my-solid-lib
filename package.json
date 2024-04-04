@@ -1,6 +1,6 @@
 {
   "name": "my-solid-lib",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "dist/my-solid-lib.umd.js",
   "module": "dist/my-solid-lib.es.js",
@@ -19,9 +19,9 @@
     "vite-plugin-solid": "^2.10.2"
   },
   "dependencies": {
-    "solid-js": "^1.8.16",
-    "@rnwonder/solid-date-picker": "^1.2.4",
+    "@suid/icons-material": "^0.7.0",
     "@suid/material": "^0.16.0",
-    "moment": "^2.30.1"
+    "moment": "^2.30.1",
+    "solid-js": "^1.8.16"
   }
 }
