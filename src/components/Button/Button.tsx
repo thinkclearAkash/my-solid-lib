@@ -1,10 +1,118 @@
-import Button from "@suid/material/Button";
-interface ButtonProps {
-  onClick: () => void;
+import { createSignal, JSX, mergeProps, Show, splitProps } from 'solid-js';
+import { SxProps } from '@suid/system';
+import Button from '@suid/material/Button';
+import Menu from '@suid/material/Menu';
+import MenuItem from '@suid/material/MenuItem';
+import CircularProgress from '@suid/material/CircularProgress';
+import ArrowDropDown from '@suid/icons-material/ArrowDropDown';
+
+export type Props = {
+  variant?: 'contained' | 'outlined' | 'text' | string;
+  size?: 'small' | 'medium' | 'large';
+  sx?: SxProps;
   label: string;
-}
-const SButton = (props: ButtonProps) => {
-  return <Button onClick={props.onClick}>{props.label}</Button>;
+  startIcon?: JSX.Element;
+  endIcon?: JSX.Element;
+  onClick?: () => void;
+  disabled?: boolean;
+  href?: string;
+  dropdownItems?: string[]; // List of items for the dropdown
+  onDropdownItemClick?: (item: string) => void; // Callback for dropdown item click
+  isLoading?: boolean;
+  class?: string;
+  title?: string;
+  disableRipple?: boolean;
+  disableElevation?: boolean;
+};
+
+function SButton(props: Readonly<Props>) {
+  props = mergeProps(
+    {
+      sx: { borderRadius: '4px' },
+    },
+    props,
+  );
+  const [load, rest] = splitProps(props, [
+    'variant',
+    'size',
+    'sx',
+    'label',
+    'startIcon',
+    'endIcon',
+    'onClick',
+    'disabled',
+    'href',
+    'dropdownItems',
+    'onDropdownItemClick',
+    'isLoading',
+    'class',
+    'title',
+    'disableRipple',
+    'disableElevation',
+  ]);
+
+  const [anchorEl, setAnchorEl] = createSignal<HTMLButtonElement | null>(null);
+  const [isDropdownOpen, setDropdownOpen] = createSignal(false);
+
+  const handleButtonClick = (event: MouseEvent) => {
+    const target = event.currentTarget as HTMLButtonElement;
+
+    setAnchorEl(target);
+    setDropdownOpen(!isDropdownOpen());
+    load.onClick && typeof load.onClick === 'function' && load.onClick();
+  };
+
+  const handleDropdownItemClick = (item: string) => {
+    setDropdownOpen(false);
+    load.onDropdownItemClick &&
+      typeof load.onDropdownItemClick === 'function' &&
+      load.onDropdownItemClick(item);
+  };
+
+  return (
+    <>
+      <Button
+        component={'button'}
+        disableRipple={load.disableRipple ?? false}
+        disableElevation={load.disableElevation ?? false}
+        {...rest}
+        ref={anchorEl}
+        variant={'contained'}
+        class={load.class}
+        title={load.title}
+        onClick={handleButtonClick}
+        disabled={load.disabled}
+        href={load.href}
+        startIcon={load.startIcon}
+        endIcon={
+          load.endIcon ?? (load.dropdownItems ? <ArrowDropDown /> : null)
+        }
+        size={load.size}
+        sx={load.sx}
+      >
+        <Show when={props.isLoading}>
+          <CircularProgress color="inherit" size={20} />
+        </Show>
+        <div>{load.label}</div>
+      </Button>
+      {load.dropdownItems && (
+        <Menu
+          anchorEl={anchorEl()}
+          open={isDropdownOpen()}
+          onClose={() => setDropdownOpen(false)}
+        >
+          {load.dropdownItems.map((item) => (
+            <MenuItem
+              value={item}
+              onClick={() => handleDropdownItemClick(item)}
+            >
+              {item}
+            </MenuItem>
+          ))}
+        </Menu>
+      )}
+    </>
+  );
 }
 
 export default SButton;
