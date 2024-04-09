@@ -16,8 +16,8 @@ export type Props = {
   onClick?: () => void;
   disabled?: boolean;
   href?: string;
-  dropdownItems?: string[]; // List of items for the dropdown
-  onDropdownItemClick?: (item: string) => void; // Callback for dropdown item click
+  dropdownItems?: string[];
+  onDropdownItemClick?: (item: string) => void;
   isLoading?: boolean;
   class?: string;
   title?: string;
