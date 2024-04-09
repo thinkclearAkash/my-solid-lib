@@ -1,0 +1,5 @@
+.timepicker-custom::-webkit-calendar-picker-indicator {
+    width: 1.5em !important;
+    height: 1.5em !important;
+    filter: invert(20%) sepia(92%) saturate(1202%) hue-rotate(179deg) brightness(90%) contrast(101%);
+}

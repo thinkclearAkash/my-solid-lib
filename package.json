@@ -1,6 +1,6 @@
 {
   "name": "my-solid-lib",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "description": "",
   "main": "dist/my-solid-lib.umd.js",
   "module": "dist/my-solid-lib.es.js",
@@ -18,10 +18,11 @@
     "vite": "^5.2.6",
     "vite-plugin-solid": "^2.10.2"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@suid/icons-material": "^0.7.0",
     "@suid/material": "^0.16.0",
-    "moment": "^2.30.1",
+    "luxon": "^3.4.4",
+    "@types/luxon": "^3.3.7",
     "solid-js": "^1.8.16"
   }
 }
