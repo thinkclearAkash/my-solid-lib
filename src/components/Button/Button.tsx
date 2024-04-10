@@ -1,13 +1,9 @@
 import { createSignal, JSX, mergeProps, Show, splitProps } from 'solid-js';
-import { SxProps } from '@suid/system';
-import Button from '@suid/material/Button';
-import Menu from '@suid/material/Menu';
-import MenuItem from '@suid/material/MenuItem';
-import CircularProgress from '@suid/material/CircularProgress';
-import ArrowDropDown from '@suid/icons-material/ArrowDropDown';
+
+import { SButton, Menu, MenuItem, SxProps,ArrowDropDown, CircularProgress } from '../common';
 
 export type Props = {
-  variant?: 'contained' | 'outlined' | 'text' | string;
+  variant?: 'contained' | 'outlined' | 'text';
   size?: 'small' | 'medium' | 'large';
   sx?: SxProps;
   label: string;
@@ -25,7 +21,7 @@ export type Props = {
   disableElevation?: boolean;
 };
 
-function SButton(props: Readonly<Props>) {
+function Button(props: Readonly<Props>) {
   props = mergeProps(
     {
       sx: { borderRadius: '4px' },
@@ -71,7 +67,7 @@ function SButton(props: Readonly<Props>) {
 
   return (
     <>
-      <Button
+      <SButton
         component={'button'}
         disableRipple={load.disableRipple ?? false}
         disableElevation={load.disableElevation ?? false}
@@ -94,7 +90,7 @@ function SButton(props: Readonly<Props>) {
           <CircularProgress color="inherit" size={20} />
         </Show>
         <div>{load.label}</div>
-      </Button>
+      </SButton>
       {load.dropdownItems && (
         <Menu
           anchorEl={anchorEl()}
@@ -115,4 +111,4 @@ function SButton(props: Readonly<Props>) {
   );
 }
 
-export default SButton;
+export default Button;
