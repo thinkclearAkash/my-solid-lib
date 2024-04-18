@@ -5,3 +5,5 @@ export * from './Skeleton';
 export * from './Card';
 export * from './Checkbox';
 export * from './Chip';
+export * from './Typography';
+export * from './IconLabel';

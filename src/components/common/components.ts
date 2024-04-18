@@ -24,7 +24,7 @@ export {
     CardHeader,
     Grid,
     Card as MuiCard,
-    Typography,
+    Typography as STypography,
     Stack,
     Skeleton,
     Paper,

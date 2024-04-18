@@ -4,7 +4,7 @@ import {
   CardHeader,
   Grid,
   MuiCard,
-  Typography,
+  STypography,
   ArrowDropDownCircleOutlined,
   PlayCircleOutlineOutlined,
 } from '../common';
@@ -64,7 +64,7 @@ export default function Card(props: Readonly<Props>) {
             alignItems="center"
           >
             <Grid item sx={cardStyles.gridItem}>
-              <Typography
+              <STypography
                 variant="body2"
                 component="span"
                 sx={cardStyles.accordionIcon}
@@ -76,32 +76,32 @@ export default function Card(props: Readonly<Props>) {
                   ) : (
                     <PlayCircleOutlineOutlined />
                   ))}
-              </Typography>
-              <Typography
+              </STypography>
+              <STypography
                 variant="body2"
                 component="span"
                 sx={cardStyles.startIcon}
               >
                 {mp.startIcon}
-              </Typography>
-              <Typography variant="body2" component="span" fontSize={'1.3rem'}>
+              </STypography>
+              <STypography variant="body2" component="span" fontSize={'1.3rem'}>
                 {mp.startTitle}
-              </Typography>
+              </STypography>
               <span class={classes.startTitleAction}>
                 {mp.startTitleAction}
               </span>
             </Grid>
             <Grid item sx={cardStyles.gridItem}>
-              <Typography
+              <STypography
                 variant="body2"
                 component="span"
                 sx={cardStyles.endIcon}
               >
                 {mp.endIcon}
-              </Typography>
-              <Typography variant="body2" component="span">
+              </STypography>
+              <STypography variant="body2" component="span">
                 {mp.endTitle}
-              </Typography>
+              </STypography>
             </Grid>
           </Grid>
         }
