@@ -7,3 +7,4 @@ export * from './Checkbox';
 export * from './Chip';
 export * from './Typography';
 export * from './IconLabel';
+export * from './Popover';

@@ -14,7 +14,7 @@ import Checkbox from '@suid/material/Checkbox';
 import FormControlLabel from '@suid/material/FormControlLabel';
 import Chip from '@suid/material/Chip';
 import Avatar from '@suid/material/Avatar';
-
+import { Popover } from '@suid/material';
 export {
     Button as SButton,
     Menu,
@@ -32,4 +32,5 @@ export {
     Checkbox as SCheckbox,
     Chip as SChip,
     Avatar,
+    Popover as SPopover,
 };
