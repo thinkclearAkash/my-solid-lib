@@ -1,4 +1,4 @@
-import type { SxProps,  } from '@suid/system';
+import type { SxProps } from '@suid/system';
 import Button from '@suid/material/Button';
 import Menu from '@suid/material/Menu';
 import MenuItem from '@suid/material/MenuItem';
@@ -14,7 +14,10 @@ import Checkbox from '@suid/material/Checkbox';
 import FormControlLabel from '@suid/material/FormControlLabel';
 import Chip from '@suid/material/Chip';
 import Avatar from '@suid/material/Avatar';
-import { Popover } from '@suid/material';
+import Popover from '@suid/material/Popover';
+import TextField from '@suid/material/TextField';
+import InputAdornment from '@suid/material/InputAdornment';
+
 export {
     Button as SButton,
     Menu,
@@ -33,4 +36,6 @@ export {
     Chip as SChip,
     Avatar,
     Popover as SPopover,
+    TextField as STextField,
+    InputAdornment,
 };
