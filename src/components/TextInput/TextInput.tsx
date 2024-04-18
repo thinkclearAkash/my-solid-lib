@@ -116,7 +116,7 @@ export const TextInput: Component<TextInputProps> = (props) => {
       variant={props.variant || 'outlined'}
       autoComplete="off"
       helperText={
-        props.error?.length > 0 && !Boolean(props.noErrorMessage)
+        props.error && props.error.length > 0 && !Boolean(props.noErrorMessage)
           ? props.error[0]
           : ''
       }
