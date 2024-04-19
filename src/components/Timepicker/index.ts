@@ -1,3 +1,3 @@
-import { TimepickerV2 } from './TimepickerV2';
+import { TimePicker } from './Timepicker';
 
-export { TimepickerV2 };
+export { TimePicker };
