@@ -8,3 +8,7 @@ export * from './Chip';
 export * from './Typography';
 export * from './IconLabel';
 export * from './Popover';
+export * from './TextInput';
+export * from './TextAreaField';
+export * from './Link';
+export * from './Empty';

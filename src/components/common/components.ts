@@ -17,6 +17,8 @@ import Avatar from '@suid/material/Avatar';
 import Popover from '@suid/material/Popover';
 import TextField from '@suid/material/TextField';
 import InputAdornment from '@suid/material/InputAdornment';
+import Box from '@suid/material/Box';
+import Link from '@suid/material/Link';
 
 export {
     Button as SButton,
@@ -38,4 +40,6 @@ export {
     Popover as SPopover,
     TextField as STextField,
     InputAdornment,
+    Box,
+    Link,
 };

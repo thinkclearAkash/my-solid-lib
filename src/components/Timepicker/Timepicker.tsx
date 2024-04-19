@@ -2,24 +2,24 @@
 to make it work properly
 and onChange it will return the same format.
 */
-import TextField from '@suid/material/TextField';
+import { TextInput } from '../TextInput/TextInput';
 import StyledProps from '@suid/system/styledProps';
 import { JSXElement, mergeProps } from 'solid-js';
 import './index.css';
 import { DateTime } from 'luxon';
 
-export type TimepickerV2Props = {
+type TimepickerProps = {
   value: string;
   onChange: (value: string) => void;
   label?: string | JSXElement;
   error?: string | string[] | null;
-  variant?: 'outlined' | 'filled' | 'standard' ;
+  variant?: 'outlined' | 'filled' | 'standard';
   class?: string;
   sxProps?: StyledProps;
   disabled?: boolean;
 };
 
-export const TimepickerV2 = (props: TimepickerV2Props) => {
+export const TimePicker = (props: TimepickerProps) => {
   props = mergeProps(
     {
       helperText: ['Invalid time'],
@@ -43,22 +43,22 @@ export const TimepickerV2 = (props: TimepickerV2Props) => {
   };
 
   return (
-    <TextField
+    <TextInput
       InputLabelProps={{
         shrink: true,
       }}
+      variant={props.variant || 'outlined'}
       type="time"
       {...props}
-      variant={props.variant ?? 'outlined'}
       value={formatTime(props.value)}
       inputProps={{
         class: 'timepicker-custom',
       }}
-      onChange={(e) => {
-        props.onChange(reverseFormatTime(e.target.value));
+      onChange={(value) => {
+        props.onChange(reverseFormatTime(value as string));
       }}
-      error={Boolean(props.error)}
-      helperText={
+      label=""
+      error={
         props.error !== undefined &&
         props.error !== null &&
         props.error.length > 0
