@@ -4,6 +4,8 @@ import ArrowDropDownCircleOutlined from '@suid/icons-material/ArrowDropDownCircl
 import PlayCircleOutlineOutlined from '@suid/icons-material/PlayCircleOutlineOutlined';
 import WarningAmber from '@suid/icons-material/WarningAmber';
 import HighlightOffRoundedIcon from '@suid/icons-material/HighlightOffRounded';
+import ChevronLeft from '@suid/icons-material/ChevronLeft';
+import ChevronRight from '@suid/icons-material/ChevronRight';
 
 export {
     CircularProgress,
@@ -12,4 +14,6 @@ export {
     PlayCircleOutlineOutlined,
     WarningAmber,
     HighlightOffRoundedIcon,
+    ChevronLeft,
+    ChevronRight,
 }

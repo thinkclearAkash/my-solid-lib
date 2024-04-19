@@ -1,6 +1,6 @@
 export * from './Button';
 export * from './Accordion';
-export * from './TimepickerV2';
+export * from './Timepicker';
 export * from './Skeleton';
 export * from './Card';
 export * from './Checkbox';
@@ -12,3 +12,4 @@ export * from './TextInput';
 export * from './TextAreaField';
 export * from './Link';
 export * from './Empty';
+export * from './TabsComponent';
