@@ -1,13 +1,14 @@
 {
   "name": "my-solid-lib",
-  "version": "1.0.35",
+  "version": "1.0.42",
   "description": "",
   "main": "dist/my-solid-lib.umd.js",
   "module": "dist/my-solid-lib.es.js",
   "types": "dist/index.d.ts",
+  "style": "dist/tailwind.css",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "vite build"
+    "build": "vite build && mv dist/style.css dist/tailwind.css"
   },
   "keywords": [],
   "author": "Akash Pandey",
@@ -20,14 +21,14 @@
     "lodash": "^4.17.21",
     "postcss": "^8.4.38",
     "rollup-plugin-visualizer": "^5.12.0",
-    "tailwindcss": "^3.4.3",
     "typescript": "^5.4.3",
     "vite": "^5.2.6",
     "vite-plugin-solid": "^2.10.2"
   },
   "dependencies": {
     "@suid/icons-material": "^0.7.0",
-    "@suid/material": "^0.16.0"
+    "@suid/material": "^0.16.0",
+    "tailwindcss": "^3.4.3"
   },
   "peerDependencies": {
     "@types/luxon": "^3.3.7",

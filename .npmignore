@@ -1,0 +1,13 @@
+
+# Source directory
+src/
+
+# Dependency directory
+node_modules/
+
+# Build outputs
+dist/*.map
+build/*.map
+
+
+

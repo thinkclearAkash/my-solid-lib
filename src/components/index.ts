@@ -13,3 +13,5 @@ export * from './TextAreaField';
 export * from './Link';
 export * from './Empty';
 export * from './TabsComponent';
+export * from './DatePicker';
+export * from './FormErrorComponent';

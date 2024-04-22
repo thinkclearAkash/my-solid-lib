@@ -19,6 +19,8 @@ import TextField from '@suid/material/TextField';
 import InputAdornment from '@suid/material/InputAdornment';
 import Box from '@suid/material/Box';
 import Link from '@suid/material/Link';
+import FormControl from '@suid/material/FormControl';
+import FormHelperText from '@suid/material/FormHelperText';
 
 export {
     Button as SButton,
@@ -42,4 +44,6 @@ export {
     InputAdornment,
     Box,
     Link,
+    FormControl,
+    FormHelperText,
 };
