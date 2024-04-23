@@ -21,6 +21,9 @@ import Box from '@suid/material/Box';
 import Link from '@suid/material/Link';
 import FormControl from '@suid/material/FormControl';
 import FormHelperText from '@suid/material/FormHelperText';
+import Modal from '@suid/material/Modal';
+import IconButton from '@suid/material/IconButton';
+import Slide from '@suid/material/Slide';
 
 export {
     Button as SButton,
@@ -46,4 +49,7 @@ export {
     Link,
     FormControl,
     FormHelperText,
+    Modal,
+    IconButton,
+    Slide,
 };

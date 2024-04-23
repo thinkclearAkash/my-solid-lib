@@ -1,6 +1,6 @@
 {
   "name": "my-solid-lib",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "",
   "main": "dist/my-solid-lib.umd.js",
   "module": "dist/my-solid-lib.es.js",
