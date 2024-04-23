@@ -7,6 +7,8 @@ import HighlightOffRoundedIcon from '@suid/icons-material/HighlightOffRounded';
 import ChevronLeft from '@suid/icons-material/ChevronLeft';
 import ChevronRight from '@suid/icons-material/ChevronRight';
 import CloseIcon from '@suid/icons-material/Close';
+import Info from '@suid/icons-material/Info';
+import Warning from '@suid/icons-material/Warning';
 export {
     CircularProgress,
     ArrowDropDown,
@@ -17,4 +19,6 @@ export {
     ChevronLeft,
     ChevronRight,
     CloseIcon,
+    Warning,
+    Info,
 }

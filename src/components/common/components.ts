@@ -24,7 +24,10 @@ import FormHelperText from '@suid/material/FormHelperText';
 import Modal from '@suid/material/Modal';
 import IconButton from '@suid/material/IconButton';
 import Slide from '@suid/material/Slide';
-
+import ListItem from '@suid/material/ListItem';
+import List from '@suid/material/List';
+import TableCell from '@suid/material/TableCell';
+import TableRow from '@suid/material/TableRow';
 export {
     Button as SButton,
     Menu,
@@ -52,4 +55,8 @@ export {
     Modal,
     IconButton,
     Slide,
+    List, 
+    ListItem, 
+    TableCell,
+    TableRow,
 };
