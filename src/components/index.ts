@@ -10,4 +10,3 @@ export * from './IconLabel';
 export * from './Popover';
 export * from './SelectInput';
 export * from './CheckboxInput';
-export * from './FormErrorComponent';
