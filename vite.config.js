@@ -19,13 +19,13 @@ export default defineConfig({
     },
     rollupOptions: {
       // Externalize peer dependencies
-      external: ['solid-js', '@suid/material'],
+      external: ['solid-js'],
       output: {
         globals: {
           'solid-js': 'Solid',
-          '@suid/material': 'SuidMaterial'
         }
       }
-    }
+    },
+    cssCodeSplit: false,
   }
 });

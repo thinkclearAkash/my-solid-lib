@@ -77,7 +77,7 @@ export const CheckboxInput: Component<CheckboxFieldProps> = (props) => {
         labelPlacement="end"
         sx={props.sxProps}
       />
-      <FormErrorComponent error={props.error} />
+      <FormErrorComponent error={props.error} showHelpertext />
     </>
   );
 };

@@ -18,13 +18,21 @@ import Popover from '@suid/material/Popover';
 import TextField from '@suid/material/TextField';
 import InputAdornment from '@suid/material/InputAdornment';
 import Select from '@suid/material/Select';
-import FormControl from '@suid/material/FormControl';
 import InputLabel from '@suid/material/InputLabel';
 import ListItemText from '@suid/material/ListItemText';
 import ListSubheader from '@suid/material/ListSubheader';
 import FormLabel from '@suid/material/FormLabel';
+import Box from '@suid/material/Box';
+import Link from '@suid/material/Link';
+import FormControl from '@suid/material/FormControl';
 import FormHelperText from '@suid/material/FormHelperText';
-
+import Modal from '@suid/material/Modal';
+import IconButton from '@suid/material/IconButton';
+import Slide from '@suid/material/Slide';
+import ListItem from '@suid/material/ListItem';
+import List from '@suid/material/List';
+import TableCell from '@suid/material/TableCell';
+import TableRow from '@suid/material/TableRow';
 export {
     Button as SButton,
     Menu,
@@ -46,10 +54,19 @@ export {
     TextField as STextField,
     InputAdornment,
     Select,
-    FormControl,
     InputLabel,
     ListItemText,
     ListSubheader,
     FormLabel,
+    Box,
+    Link,
+    FormControl,
     FormHelperText,
+    Modal,
+    IconButton,
+    Slide,
+    List, 
+    ListItem, 
+    TableCell,
+    TableRow,
 };

@@ -257,8 +257,8 @@ import FormErrorComponent from '../FormErrorComponent/FormErrorComponent';
           </>
         </Select>
         <FormErrorComponent
-        error={props.error}
-        showHelperText={!Boolean(props.noErrorMessage)}
+          error={props.error}
+          showHelpertext={!Boolean(props.noErrorMessage)}
         />
       </FormControl>
     );
