@@ -28,12 +28,10 @@ export const CheckboxInput: Component<CheckboxFieldProps> = (props) => {
     },
     props,
   );
-  const [value, setValue] = createSignal(props.checked);
   const handleCheckboxChange = (
     _: ST.ChangeEvent<HTMLInputElement>,
     checked: boolean,
   ) => {
-    setValue(checked);
     props.onChange && props.onChange(checked);
   };
   return (
@@ -44,7 +42,7 @@ export const CheckboxInput: Component<CheckboxFieldProps> = (props) => {
             id={props.id}
             size={props.size}
             inputProps={props.inputProps}
-            checked={value()}
+            checked={props.checked}
             onChange={handleCheckboxChange}
             disabled={props.disabled}
             sx={
