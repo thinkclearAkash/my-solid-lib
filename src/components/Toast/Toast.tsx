@@ -7,8 +7,9 @@ import {
   MultiLineToast,
   WithTimerToast,
 } from './CustomToasts';
+import { mergeProps } from 'solid-js';
 
-export type OpenToastProps = {
+type OpenToastProps = {
   message: string;
   label?: string;
   position?: ToastPosition;
@@ -36,45 +37,38 @@ export type ToastPosition =
   | 'top-center'
   | 'top-left';
 
-const defaultToastOptions = {
+const defaultToastOptions: Partial<OpenToastProps> = {
   duration: 1500,
-  style: { backgroundColor: '#438471', color: '#fff' },
-  className: 'my-custom-class',
 };
 
-export const openToast = ({
-  type,
-  position,
-  message,
-  duration = defaultToastOptions.duration,
-  title = 'Title',
-}: OpenToastProps) => {
-  switch (type) {
+export const openToast = (props: OpenToastProps) => {
+  props = mergeProps(defaultToastOptions, props);
+  switch (props.type) {
     case ToastType.Success:
-      toast.success(message, {
-        duration,
-        position,
+      toast.success(props.message, {
+        duration: props.duration,
+        position: props.position,
       });
       break;
 
     case ToastType.Error:
-      toast.error(message, {
-        duration,
-        position,
+      toast.error(props.message, {
+        duration: props.duration,
+        position: props.position,
       });
       break;
 
     case ToastType.Loading:
-      toast.loading(message, {
-        duration,
-        position,
+      toast.loading(props.message, {
+        duration: props.duration,
+        position: props.position,
       });
       break;
 
     case ToastType.Caution:
-      toast(message, {
+      toast(props.message, {
         icon: <Warning style={{ color: '#F59D25' }} />,
-        position,
+        position: props.position,
       });
       break;
 
@@ -82,22 +76,22 @@ export const openToast = ({
       toast.custom(
         (t: Toast) => (
           <CustomToast
-            message={message}
+            message={props.message}
             onClose={() => console.log('clear')}
             visible={t.visible}
           />
         ),
         {
-          duration,
-          position,
+          duration: props.duration,
+          position: props.position,
         },
       );
       break;
 
     case ToastType.MultiLine:
-      toast.custom(() => <MultiLineToast message={message} />, {
-        duration,
-        position,
+      toast.custom(() => <MultiLineToast message={props.message} />, {
+        duration: props.duration,
+        position: props.position,
       });
       break;
 
@@ -105,12 +99,12 @@ export const openToast = ({
       toast.custom(
         (t) => (
           <InboxToast
-            title={title || 'Inbox Message'}
-            message={message}
+            title={props.title || 'Inbox Message'}
+            message={props.message}
             onClose={() => toast.dismiss(t.id)}
           />
         ),
-        { duration, position },
+        { duration: props.duration, position: props.position },
       );
       break;
 
@@ -118,20 +112,20 @@ export const openToast = ({
       toast.custom(
         (t) => (
           <WithTimerToast
-            message={message}
-            duration={duration}
+            message={props.message}
+            duration={props.duration as number}
             onClose={() => toast.dismiss(t.id)}
             visible={t.visible}
             id={t.id}
-            title={title}
+            title={props.title as string}
           />
         ),
-        { duration, position },
+        { duration: props.duration, position: props.position },
       );
       break;
 
     default:
-      toast(message, { duration, position }); // Default case for simple text toast
+      toast(props.message, { duration: props.duration, position: props.position }); // Default case for simple text toast
       break;
   }
 };
