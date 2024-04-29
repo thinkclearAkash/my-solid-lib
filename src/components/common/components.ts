@@ -33,6 +33,9 @@ import ListItem from '@suid/material/ListItem';
 import List from '@suid/material/List';
 import TableCell from '@suid/material/TableCell';
 import TableRow from '@suid/material/TableRow';
+import Radio from '@suid/material/Radio';
+import RadioGroup from '@suid/material/RadioGroup';
+
 export {
     Button as SButton,
     Menu,
@@ -69,4 +72,6 @@ export {
     ListItem, 
     TableCell,
     TableRow,
+    RadioGroup,
+    Radio as SRadio
 };

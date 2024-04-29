@@ -18,4 +18,7 @@ export * from './TabsComponent';
 export * from './DatePicker';
 export * from './FormErrorComponent';
 export * from './Modal';
+export * from './Radio';
+export * from './Rating';
+
 
