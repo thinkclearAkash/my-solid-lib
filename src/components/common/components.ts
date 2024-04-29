@@ -17,6 +17,11 @@ import Avatar from '@suid/material/Avatar';
 import Popover from '@suid/material/Popover';
 import TextField from '@suid/material/TextField';
 import InputAdornment from '@suid/material/InputAdornment';
+import Select from '@suid/material/Select';
+import FormControl from '@suid/material/FormControl';
+import InputLabel from '@suid/material/InputLabel';
+import ListItemText from '@suid/material/ListItemText';
+import ListSubheader from '@suid/material/ListSubheader';
 
 export {
     Button as SButton,
@@ -38,4 +43,9 @@ export {
     Popover as SPopover,
     TextField as STextField,
     InputAdornment,
+    Select,
+    FormControl,
+    InputLabel,
+    ListItemText,
+    ListSubheader,
 };
