@@ -1,8 +1,9 @@
-import { Checkbox, FormControlLabel, FormLabel } from '@suid/material';
+
 import * as ST from '@suid/types';
 import { Component, createSignal, mergeProps } from 'solid-js';
 import { SxProps } from '@suid/system';
 import FormErrorComponent from '../FormErrorComponent/FormErrorComponent';
+import { FormControlLabel, FormLabel, SCheckbox } from '../common';
 
 type CheckboxFieldProps = {
   name?: string;
@@ -14,7 +15,7 @@ type CheckboxFieldProps = {
   required?: boolean;
   error?: string | string[] | null;
   disabled?: boolean;
-  inputProps?: ST.InferPropsType<typeof Checkbox>['inputProps'];
+  inputProps?: ST.InferPropsType<typeof SCheckbox>['inputProps'];
   id?: string;
   sxProps?: SxProps;
   size?: 'small' | 'medium';
@@ -39,7 +40,7 @@ export const CheckboxInput: Component<CheckboxFieldProps> = (props) => {
     <>
       <FormControlLabel
         control={
-          <Checkbox
+          <SCheckbox
             id={props.id}
             size={props.size}
             inputProps={props.inputProps}

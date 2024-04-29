@@ -1,5 +1,5 @@
-import { FormHelperText } from '@suid/material';
 import { Component, For } from 'solid-js';
+import { FormHelperText } from '../common';
 export interface ErrorType {
   error: { [key: string]: string[] } | string[] | null | undefined| string;
   showHelperText?: boolean;

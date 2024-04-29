@@ -22,6 +22,8 @@ import FormControl from '@suid/material/FormControl';
 import InputLabel from '@suid/material/InputLabel';
 import ListItemText from '@suid/material/ListItemText';
 import ListSubheader from '@suid/material/ListSubheader';
+import FormLabel from '@suid/material/FormLabel';
+import FormHelperText from '@suid/material/FormHelperText';
 
 export {
     Button as SButton,
@@ -48,4 +50,6 @@ export {
     InputLabel,
     ListItemText,
     ListSubheader,
+    FormLabel,
+    FormHelperText,
 };
