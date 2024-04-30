@@ -33,6 +33,11 @@ import ListItem from '@suid/material/ListItem';
 import List from '@suid/material/List';
 import TableCell from '@suid/material/TableCell';
 import TableRow from '@suid/material/TableRow';
+import Dialog from '@suid/material/Dialog';
+import DialogContent from '@suid/material/DialogContent';
+import DialogContentText from '@suid/material/DialogContentText';
+import DialogTitle from '@suid/material/DialogTitle';
+import DialogActions from '@suid/material/DialogActions';
 export {
     Button as SButton,
     Menu,
@@ -69,4 +74,9 @@ export {
     ListItem, 
     TableCell,
     TableRow,
+    Dialog,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    DialogActions,
 };

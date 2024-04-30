@@ -5,7 +5,7 @@ import {
   DialogContentText,
   DialogTitle,
   Slide,
-} from '@suid/material';
+} from '../common';
 import { TransitionProps } from '@suid/material/transitions';
 import {
   Component,
