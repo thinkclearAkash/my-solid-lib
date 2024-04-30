@@ -129,11 +129,13 @@ export default function BasicModal(props: BasicModalProps) {
               maxWidth: load.maxWidth,
             }}
           >
-            {Boolean(load.header) ? (
-              <Box
-                sx={{ justifyContent: 'space-between' }}
-                class="flex px-6 py-4"
-              >
+            <Box
+              sx={{ justifyContent: 'space-between' }}
+              class={`flex ${
+                Boolean(load.header) ? 'px-6 py-4' : 'absolute right-0'
+              }`}
+            >
+              {Boolean(load.header) && (
                 <STypography
                   id="modal-modal-title"
                   class="text-black !text-xl !font-medium  !leading-8 !tracking-[0.15px]"
@@ -142,15 +144,11 @@ export default function BasicModal(props: BasicModalProps) {
                 >
                   {load.title}
                 </STypography>
-                {Boolean(load.showClose) && (
-                  <IconButton
-                    onClick={handleClose}
-                  >
-                    <CloseIcon fontSize="small" />
-                  </IconButton>
-                )}
-              </Box>
-            ) : null}
+              )}
+              <IconButton class="!ml-auto" onClick={handleClose}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </Box>
             <Box
               class="p-4 overflow-y-auto"
               height={
