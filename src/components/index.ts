@@ -19,4 +19,5 @@ export * from './DatePicker';
 export * from './FormErrorComponent';
 export * from './Modal';
 export * from './DialogBox';
-
+export * from './Notification';
+export * from './TableErrorsRow';
