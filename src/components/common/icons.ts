@@ -9,6 +9,9 @@ import ChevronRight from '@suid/icons-material/ChevronRight';
 import CloseIcon from '@suid/icons-material/Close';
 import Info from '@suid/icons-material/Info';
 import Warning from '@suid/icons-material/Warning';
+import CircleOutlined from '@suid/icons-material/CircleOutlined';
+import CheckCircleOutlined from '@suid/icons-material/CheckCircleOutlined';
+
 export {
     CircularProgress,
     ArrowDropDown,
@@ -21,4 +24,6 @@ export {
     CloseIcon,
     Warning,
     Info,
+    CircleOutlined,
+    CheckCircleOutlined
 }
