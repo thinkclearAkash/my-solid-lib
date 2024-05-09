@@ -1,44 +1,43 @@
-/*eslint-disable*/
-// import { Notification } from '@components/Notification';
-// import { List, ListItem, Stack, TableCell, TableRow } from '../common';
-// import { Component, Show } from 'solid-js';
+import { Notification } from '../Notification';
+import { List, ListItem, Stack, TableCell, TableRow } from '../common';
+import { Component, Show } from 'solid-js';
 
-// import classes from './classes';
+import classes from './classes';
 
-// export type TableErrorRowProps = {
-//   columnsLength: number;
-//   tableErrors: string[];
-// };
+export type TableErrorRowProps = {
+  columnsLength: number;
+  tableErrors: string[];
+};
 
-// export const TableRowErrors: Component<TableErrorRowProps> = (
-//   props: TableErrorRowProps,
-// ) => {
+export const TableRowErrors: Component<TableErrorRowProps> = (
+  props: TableErrorRowProps,
+) => {
 
-//   return (
-//     <Show when={props.tableErrors.length > 0}>
-//       <TableRow class={classes.tableRow}>
-//         <TableCell colspan={props.columnsLength + 1} class={classes.errorRow}>
-//           <Notification
-//             type="tableError"
-//             tableRowNotification
-//             text={
-//               <Stack spacing={0.5}>
-//                 <List disablePadding class={classes.errorListContainer}>
-//                   {props.tableErrors.map((error) => (
-//                     <ListItem
-//                       disablePadding
-//                       class={classes.errorListLine}
-//                     >{`${error}`}</ListItem>
-//                   ))}
-//                 </List>
-//               </Stack>
-//             }
-//           />
-//         </TableCell>
-//       </TableRow>
-//     </Show>
-//   );
-// };
+  return (
+    <Show when={props.tableErrors.length > 0}>
+      <TableRow class={classes.tableRow}>
+        <TableCell colspan={props.columnsLength + 1} class={classes.errorRow}>
+          <Notification
+            type="tableError"
+            tableRowNotification
+            text={
+              <Stack spacing={0.5}>
+                <List disablePadding class={classes.errorListContainer}>
+                  {props.tableErrors.map((error) => (
+                    <ListItem
+                      disablePadding
+                      class={classes.errorListLine}
+                    >{`${error}`}</ListItem>
+                  ))}
+                </List>
+              </Stack>
+            }
+          />
+        </TableCell>
+      </TableRow>
+    </Show>
+  );
+};
 
 
 

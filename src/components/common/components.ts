@@ -35,6 +35,11 @@ import TableCell from '@suid/material/TableCell';
 import TableRow from '@suid/material/TableRow';
 import Radio from '@suid/material/Radio';
 import RadioGroup from '@suid/material/RadioGroup';
+import Dialog from '@suid/material/Dialog';
+import DialogContent from '@suid/material/DialogContent';
+import DialogContentText from '@suid/material/DialogContentText';
+import DialogTitle from '@suid/material/DialogTitle';
+import DialogActions from '@suid/material/DialogActions';
 
 export {
     Button as SButton,
@@ -73,5 +78,10 @@ export {
     TableCell,
     TableRow,
     RadioGroup,
-    Radio as SRadio
+    Radio as SRadio,
+    Dialog,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    DialogActions,
 };
