@@ -1,6 +1,6 @@
 import { NoData } from "../../assets";
 
-export type Props = {
+type Props = {
   message?: string;
 };
 

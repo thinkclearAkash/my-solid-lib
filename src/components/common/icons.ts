@@ -17,6 +17,9 @@ import Person from '@suid/icons-material/Person';
 import LocationOn from '@suid/icons-material/LocationOn';
 import Apartment from '@suid/icons-material/Apartment';
 import Phone from '@suid/icons-material/Phone';
+import CircleOutlined from '@suid/icons-material/CircleOutlined';
+import CheckCircleOutlined from '@suid/icons-material/CheckCircleOutlined';
+
 export {
     CircularProgress,
     ArrowDropDown,
@@ -37,4 +40,6 @@ export {
     LocationOn,
     Apartment,
     Phone,
+    CircleOutlined,
+    CheckCircleOutlined
 }
