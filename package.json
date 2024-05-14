@@ -28,7 +28,6 @@
   "dependencies": {
     "@suid/icons-material": "^0.7.0",
     "@suid/material": "^0.16.0",
-    "@types/node": "^20.12.11",
     "tailwindcss": "^3.4.3"
   },
   "peerDependencies": {
