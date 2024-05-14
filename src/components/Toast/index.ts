@@ -1,4 +1,6 @@
-import { openToast } from './Toast';
+import { ToastType, openToast } from './Toast';
 import { Toaster } from 'solid-toast';
 
-export { openToast, Toaster }
+export { Toaster, openToast }
+
+export type { ToastType }
