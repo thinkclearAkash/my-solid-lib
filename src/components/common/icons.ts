@@ -9,6 +9,14 @@ import ChevronRight from '@suid/icons-material/ChevronRight';
 import CloseIcon from '@suid/icons-material/Close';
 import Info from '@suid/icons-material/Info';
 import Warning from '@suid/icons-material/Warning';
+import PeopleIcon from '@suid/icons-material/People';
+import EmailIcon from '@suid/icons-material/Email';
+import FaxIcon from '@suid/icons-material/Fax';
+import PhoneIcon from '@suid/icons-material/Phone';
+import Person from '@suid/icons-material/Person';
+import LocationOn from '@suid/icons-material/LocationOn';
+import Apartment from '@suid/icons-material/Apartment';
+import Phone from '@suid/icons-material/Phone';
 import CircleOutlined from '@suid/icons-material/CircleOutlined';
 import CheckCircleOutlined from '@suid/icons-material/CheckCircleOutlined';
 import SearchIcon from '@suid/icons-material/Search';
@@ -25,6 +33,14 @@ export {
     CloseIcon,
     Warning,
     Info,
+    PeopleIcon,
+    EmailIcon,
+    FaxIcon,
+    PhoneIcon,
+    Person,
+    LocationOn,
+    Apartment,
+    Phone,
     CircleOutlined,
     CheckCircleOutlined,
     SearchIcon
