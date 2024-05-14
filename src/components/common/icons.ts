@@ -11,6 +11,7 @@ import Info from '@suid/icons-material/Info';
 import Warning from '@suid/icons-material/Warning';
 import CircleOutlined from '@suid/icons-material/CircleOutlined';
 import CheckCircleOutlined from '@suid/icons-material/CheckCircleOutlined';
+import SearchIcon from '@suid/icons-material/Search';
 
 export {
     CircularProgress,
@@ -25,5 +26,6 @@ export {
     Warning,
     Info,
     CircleOutlined,
-    CheckCircleOutlined
+    CheckCircleOutlined,
+    SearchIcon
 }
