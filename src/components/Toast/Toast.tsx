@@ -129,13 +129,3 @@ export const openToast = (props: OpenToastProps) => {
       break;
   }
 };
-
-
-export const handleToast = (type: ToastType, errorMessage: string) => {
-  openToast({
-    type,
-    position: 'top-right',
-    message: errorMessage,
-    duration: 2500,
-  });
-};
