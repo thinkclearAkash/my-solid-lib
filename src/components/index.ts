@@ -25,3 +25,4 @@ export * from './Menu';
 export * from './DialogBox';
 export * from './Notification';
 export * from './TableErrorsRow';
+export * from './MultilineTruncate';
