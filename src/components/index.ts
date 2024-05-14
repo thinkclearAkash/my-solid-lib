@@ -26,3 +26,4 @@ export * from './DialogBox';
 export * from './Notification';
 export * from './TableErrorsRow';
 export * from './MultilineTruncate';
+export * from './Autocomplete';

@@ -1,4 +1,4 @@
-import type { SxProps } from '@suid/system';
+import type { SxProps, Breakpoint } from '@suid/system';
 import Button from '@suid/material/Button';
 import Menu from '@suid/material/Menu';
 import MenuItem from '@suid/material/MenuItem';
@@ -40,6 +40,8 @@ import DialogContent from '@suid/material/DialogContent';
 import DialogContentText from '@suid/material/DialogContentText';
 import DialogTitle from '@suid/material/DialogTitle';
 import DialogActions from '@suid/material/DialogActions';
+import Popper from '@suid/material/Popper';
+import { Theme } from '@suid/system/createTheme';
 
 export {
     Button as SButton,
@@ -84,4 +86,7 @@ export {
     DialogContentText,
     DialogTitle,
     DialogActions,
+    Popper,
+    Breakpoint,
+    Theme
 };
