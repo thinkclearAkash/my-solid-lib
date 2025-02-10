@@ -8,7 +8,7 @@ import { isEmpty, isNumber } from 'lodash';
 import { DateTime } from 'luxon';
 import { createSignal, mergeProps } from 'solid-js';
 
-export type Props = {
+export type DatePickerProps = {
   sx?: SxProps;
   class?: string;
   name?: string;
@@ -37,7 +37,7 @@ const DEFAULTS = {
   noBackground: true,
 };
 
-export const DatePicker = (props: Props) => {
+export const DatePicker = (props: DatePickerProps) => {
   props = mergeProps(DEFAULTS, props);
   const [errorMessage, setErrorMessage] = createSignal<string | undefined>('');
 
