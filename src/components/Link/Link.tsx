@@ -1,6 +1,4 @@
-
-import { Box, Link } from '../common';
-import { ForwardArrow } from '../../assets';
+import { Box, Link } from '@suid/material';
 
 export interface LinkProps {
   title: string;
@@ -8,20 +6,7 @@ export interface LinkProps {
   target?: string;
 }
 
-const ArrowIcon = () => (
-  <span
-    style={{
-      width: '28px',
-      height: '28px',
-      'flex-shrink': '0',
-      'margin-left': '5px',
-    }}
-  >
-    <img src={ForwardArrow} alt="forward arrow" />
-  </span>
-);
-
-const LinkComponent = (props: LinkProps) => {
+const LinkComponent = ({ title, url, target }: LinkProps) => {
   const linkContent = (
     <Box
       sx={{
@@ -29,8 +14,8 @@ const LinkComponent = (props: LinkProps) => {
       }}
     >
       <Link
-        href={props.url}
-        target={props.target}
+        href={url}
+        target={target}
         sx={{
           lineHeight: '24px',
           letterSpacing: '0.15px',
@@ -39,9 +24,8 @@ const LinkComponent = (props: LinkProps) => {
           fontWeight: '400',
         }}
       >
-        {props.title}
+        {title}
       </Link>
-      <ArrowIcon />
     </Box>
   );
 

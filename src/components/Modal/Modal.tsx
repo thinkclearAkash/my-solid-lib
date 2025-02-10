@@ -1,25 +1,27 @@
+import CloseIcon from '@suid/icons-material/Close';
 import {
   Box,
-  SButton,
+  Button,
+  CircularProgress,
   IconButton,
-  Modal,
+  Modal as SModal,
   Slide,
-  STypography,
-  ModalProps,
-  CloseIcon,
-} from '../common';
+  Typography,
+} from '@suid/material';
+import { ModalProps } from '@suid/material/Modal';
 import { JSX, mergeProps, splitProps } from 'solid-js';
 
 type ModalPropsWithoutOpen = Omit<ModalProps, 'open'>;
 
 export interface BasicModalProps extends ModalPropsWithoutOpen {
-  id?: string;
+  id: string;
   showModal: boolean;
   children: JSX.Element;
   width?: string;
   maxWidth?: string;
   height?: string;
   onSubmitText?: string;
+  onSubmitLoading?: boolean;
   onSubmit?: () => void;
   onCloseText?: string;
   onClose?: () => void;
@@ -28,29 +30,34 @@ export interface BasicModalProps extends ModalPropsWithoutOpen {
   footer?: boolean;
   modalStyles?: Record<string, string>;
   footerContainerClass?: string;
-  closeButtonVariant?: "text" | "outlined" | "contained";
+  closeButtonVariant?: 'text' | 'outlined' | 'contained';
   footerChild?: JSX.Element;
   mainContainerStyles?: Record<string, string>;
   showClose?: boolean;
   fullHeight?: boolean;
   preventCloseOnSubmit?: boolean;
   backdropClick?: boolean;
+  hideClose?: boolean;
+  customizedHeaderContent?: JSX.Element;
+  stickyHeaderFooter?: boolean;
 }
 
 const DEFAULTS = {
   header: true,
   footer: true,
+  hideClose: false,
   width: '500px',
   onCloseText: 'Cancel',
+  onSubmitLoading: false,
+  stickyHeaderFooter: false,
   onSubmitText: 'Submit',
   modalStyles: {
     backgroundColor: 'white',
   },
   footerContainerClass: 'flex justify-end items-center gap-2 flex-wrap',
-  showClose: false,
 };
 
-export default function BasicModal(props: BasicModalProps) {
+export default function Modal(props: BasicModalProps) {
   props = mergeProps(DEFAULTS, props);
   const [load, rest] = splitProps(props, [
     'id',
@@ -71,10 +78,12 @@ export default function BasicModal(props: BasicModalProps) {
     'closeButtonVariant',
     'footerChild',
     'mainContainerStyles',
-    'showClose',
     'preventCloseOnSubmit',
     'backdropClick',
-    'showModal'
+    'showModal',
+    'hideClose',
+    'customizedHeaderContent',
+    'stickyHeaderFooter',
   ]);
 
   const handleSubmit = () => {
@@ -90,7 +99,7 @@ export default function BasicModal(props: BasicModalProps) {
   };
 
   return (
-    <Modal
+    <SModal
       open={load.showModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -113,15 +122,11 @@ export default function BasicModal(props: BasicModalProps) {
           ...load.mainContainerStyles,
         }}
       >
-        <Slide
-          direction="down"
-          appear
-          in={load.showModal}
-        >
+        <Slide direction="down" appear in={load.showModal}>
           <Box
             sx={{
-              maxHeight: '90vh',
-              overflow: 'auto',
+              maxHeight: '100vh',
+              overflow: `${Boolean(load.stickyHeaderFooter) ? '' : 'auto'}`,
               borderRadius: 1,
               ...load.modalStyles,
               width: load.width,
@@ -132,25 +137,40 @@ export default function BasicModal(props: BasicModalProps) {
             <Box
               sx={{ justifyContent: 'space-between' }}
               class={`flex ${
-                Boolean(load.header) ? 'px-6 py-4' : 'absolute right-0'
+                Boolean(load.header)
+                  ? `px-6 py-4 ${
+                      Boolean(load.stickyHeaderFooter) && 'sticky bg-white'
+                    }`
+                  : 'absolute right-0'
               }`}
             >
               {Boolean(load.header) && (
-                <STypography
+                <Typography
                   id="modal-modal-title"
-                  class="text-black !text-xl !font-medium  !leading-8 !tracking-[0.15px]"
+                  class={`text-black !text-xl !font-medium  !leading-8 !tracking-[0.15px] ${
+                    Boolean(load.customizedHeaderContent)
+                      ? 'flex items-center'
+                      : ''
+                  }`}
                   variant="h6"
                   component="h2"
                 >
                   {load.title}
-                </STypography>
+                  {Boolean(load.customizedHeaderContent) &&
+                    load.customizedHeaderContent}
+                </Typography>
               )}
-              <IconButton class="!ml-auto" onClick={handleClose}>
-                <CloseIcon fontSize="small" />
-              </IconButton>
+              {!Boolean(load.hideClose) && (
+                <IconButton class="!ml-auto" onClick={handleClose}>
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              )}
             </Box>
+
             <Box
-              class="p-4 overflow-y-auto"
+              class={`px-4 pb-4 pt-2 overflow-y-auto ${
+                Boolean(load.stickyHeaderFooter) ? 'max-h-[500px] mb-11' : ''
+              }`}
               height={
                 load.fullHeight ?? false ? 'calc(100vh - 240px)' : undefined
               }
@@ -160,21 +180,34 @@ export default function BasicModal(props: BasicModalProps) {
             {Boolean(load.footer) && (
               <Box class={`p-4 relative ${load.footerContainerClass}`}>
                 <>
-                  <SButton
+                  <Button
                     class="!rounded-sm"
                     variant="contained"
                     onClick={handleSubmit}
                     type="submit"
+                    disabled={props.onSubmitLoading}
                   >
-                    {load.onSubmitText}
-                  </SButton>
-                  <SButton
+                    {Boolean(props.onSubmitLoading) ? (
+                      <CircularProgress
+                        color="secondary"
+                        size={14}
+                        sx={{ margin: '5px' }}
+                      />
+                    ) : (
+                      load.onSubmitText
+                    )}
+                  </Button>
+                  <Button
                     class="!rounded-sm"
-                    variant={Boolean(load.closeButtonVariant) ? load.closeButtonVariant : 'outlined'}
+                    variant={
+                      Boolean(load.closeButtonVariant)
+                        ? load.closeButtonVariant
+                        : 'outlined'
+                    }
                     onClick={handleClose}
                   >
                     {load.onCloseText}
-                  </SButton>
+                  </Button>
                 </>
                 {Boolean(load.footerChild) && load.footerChild}
               </Box>
@@ -182,6 +215,6 @@ export default function BasicModal(props: BasicModalProps) {
           </Box>
         </Slide>
       </Box>
-    </Modal>
+    </SModal>
   );
 }

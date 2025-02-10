@@ -1,10 +1,18 @@
-import { JSXElement, createSignal, mergeProps } from 'solid-js';
 import { ArrowDropDown, ArrowDropUp } from '@suid/icons-material';
+import {
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Menu as SMenu,
+} from '@suid/material';
+import { JSXElement, createSignal, mergeProps } from 'solid-js';
 
 import classes from './classes';
-import { ListItemText, MenuItem, Menu as SMenu } from '../common';
 
-type MenuItemType = string | { value: string; label: string };
+type MenuItemType =
+  | string
+  | { value: string; label: string; icon?: JSXElement; disabled?: boolean };
+
 export type MenuWrapperProps = {
   menuItems: MenuItemType[];
   menuButtonLabel: string | JSXElement;
@@ -12,6 +20,7 @@ export type MenuWrapperProps = {
   classes?: string;
   downArrowShowHide: boolean;
   width?: number;
+  disabled?: boolean;
 };
 const Menu = (props: MenuWrapperProps) => {
   props = mergeProps(
@@ -51,17 +60,27 @@ const Menu = (props: MenuWrapperProps) => {
   };
 
   return (
-    <div class={`${props.classes} inline-flex`}>
+    <div
+      class={`${props.classes} inline-flex ${
+        Boolean(props.disabled) ? 'opacity-75' : undefined
+      }`}
+    >
       <span
         ref={spanElement}
         aria-controls={open() ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open() ? 'true' : undefined}
         onClick={(event) => {
+          if (Boolean(props.disabled)) {
+            return;
+          }
+
           setAnchorEl(event.currentTarget);
           calculateWidth();
         }}
-        class="flex items-center cursor-pointer"
+        class={`flex items-center cursor-${
+          Boolean(props.disabled) ? 'default' : 'pointer'
+        }`}
       >
         {props.menuButtonLabel}
         {props.downArrowShowHide &&
@@ -80,13 +99,24 @@ const Menu = (props: MenuWrapperProps) => {
         MenuListProps={{ 'aria-labelledby': 'basic-button' }}
       >
         {props.menuItems.map((item) => (
-          <MenuItem onClick={() => onMenuClick(item)}>
+          <MenuItem
+            onClick={() => onMenuClick(item)}
+            class={classes.menuItem}
+            disabled={item instanceof Object ? item.disabled : false}
+          >
             {typeof item === 'string' ? (
               <ListItemText class={classes.listItemtext}>{item}</ListItemText>
             ) : (
-              <ListItemText class={classes.listItemtext}>
-                {item.label}
-              </ListItemText>
+              <>
+                {item.icon && (
+                  <ListItemIcon class={classes.listItemIcon}>
+                    <img src={item.icon} alt={item.label} />
+                  </ListItemIcon>
+                )}
+                <ListItemText class={classes.listItemtext}>
+                  {item.label}
+                </ListItemText>
+              </>
             )}
           </MenuItem>
         ))}

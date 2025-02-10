@@ -1,24 +1,40 @@
 import { createSignal, JSX, mergeProps, Show, splitProps } from 'solid-js';
-
-import { SButton, Menu, MenuItem, SxProps,ArrowDropDown, CircularProgress } from '../common';
+import { SxProps } from '@suid/system';
+import {
+  Button as SButton,
+  Menu,
+  MenuItem,
+  CircularProgress,
+} from '@suid/material';
+import ArrowDropDown from '@suid/icons-material/ArrowDropDown';
 
 export type Props = {
-  variant?: 'contained' | 'outlined' | 'text';
+  variant?: 'contained' | 'outlined' | 'text' | string;
   size?: 'small' | 'medium' | 'large';
   sx?: SxProps;
-  label: string;
+  label: string | JSX.Element;
   startIcon?: JSX.Element;
   endIcon?: JSX.Element;
   onClick?: () => void;
   disabled?: boolean;
   href?: string;
-  dropdownItems?: string[];
-  onDropdownItemClick?: (item: string) => void;
+  dropdownItems?: string[]; // List of items for the dropdown
+  onDropdownItemClick?: (item: string) => void; // Callback for dropdown item click
+  type?: string;
   isLoading?: boolean;
   class?: string;
   title?: string;
   disableRipple?: boolean;
   disableElevation?: boolean;
+  color?:
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
+    | undefined;
 };
 
 function Button(props: Readonly<Props>) {
@@ -40,6 +56,7 @@ function Button(props: Readonly<Props>) {
     'href',
     'dropdownItems',
     'onDropdownItemClick',
+    'type',
     'isLoading',
     'class',
     'title',
@@ -47,7 +64,7 @@ function Button(props: Readonly<Props>) {
     'disableElevation',
   ]);
 
-  const [anchorEl, setAnchorEl] = createSignal<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = createSignal<HTMLButtonElement>(null);
   const [isDropdownOpen, setDropdownOpen] = createSignal(false);
 
   const handleButtonClick = (event: MouseEvent) => {
@@ -68,13 +85,14 @@ function Button(props: Readonly<Props>) {
   return (
     <>
       <SButton
-        component={'button'}
         disableRipple={load.disableRipple ?? false}
         disableElevation={load.disableElevation ?? false}
         {...rest}
         ref={anchorEl}
-        variant={'contained'}
+        color={props.color}
+        variant={load.variant ?? 'contained'}
         class={load.class}
+        type={load.type}
         title={load.title}
         onClick={handleButtonClick}
         disabled={load.disabled}
@@ -93,7 +111,7 @@ function Button(props: Readonly<Props>) {
       </SButton>
       {load.dropdownItems && (
         <Menu
-          anchorEl={anchorEl()}
+          anchorEl={anchorEl}
           open={isDropdownOpen()}
           onClose={() => setDropdownOpen(false)}
         >

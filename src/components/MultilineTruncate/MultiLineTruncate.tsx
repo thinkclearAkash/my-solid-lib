@@ -1,30 +1,31 @@
-import { Component, createSignal, onMount } from 'solid-js';
-
-const MultiLineTruncate: Component<{ text?: string }> = (props) => {
-  const [isTruncated, setIsTruncated] = createSignal(false);
-  const [content, setContent] = createSignal(props.text);
+const MultiLineTruncate = (props: { text?: string | null }) => {
   let containerRef: HTMLDivElement | undefined;
 
-  onMount(() => {
-    if (
-      containerRef
-        ? containerRef.scrollHeight > containerRef.offsetHeight
-        : false
-    ) {
-      setIsTruncated(true);
-      setContent(
-        props.text !== undefined ? `${props.text.substring(0, 160)}...` : '',
-      ); // Adjust as needed
+  const getText = () => {
+    if (props.text !== undefined && props.text !== null) {
+      if (props.text.length > 160) {
+        return `${props.text.substring(0, 160)}...`;
+      }
+      return props.text;
     }
-  });
-
+    return '';
+  };
+  function getSpan() {
+    return <>{getText()}</>;
+  }
   return (
     <span
       ref={containerRef}
       style={{ 'max-height': '3.6em', overflow: 'hidden' }}
-      title={isTruncated() ? props.text : ''}
+      title={
+        props.text !== undefined &&
+        props.text !== null &&
+        props.text.length > 160
+          ? props.text
+          : ''
+      }
     >
-      {content()}
+      {getSpan()}
     </span>
   );
 };

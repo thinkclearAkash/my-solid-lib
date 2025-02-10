@@ -1,19 +1,22 @@
 import { CardPlaceholder } from '../Skeleton';
+import { KeyboardArrowDown, KeyboardArrowRight } from '@suid/icons-material';
 import {
+  Box,
   CardContent,
   CardHeader,
-  Grid,
-  MuiCard,
-  STypography,
-  ArrowDropDownCircleOutlined,
-  PlayCircleOutlineOutlined,
-} from '../common';
+  Card as MuiCard,
+  Typography,
+} from '@suid/material';
 import { JSX, Show, createSignal, mergeProps } from 'solid-js';
 
 import { cardStyles } from './Card.style';
 import classes from './classes';
 
-export interface Props {
+export type CardProps = {
+  textColor?: string;
+  bannerColor?: string;
+  bannerHeight?: string;
+  contentClass?: string;
   startTitle?: string | JSX.Element;
   startTitleAction?: JSX.Element;
   endTitle?: string | JSX.Element;
@@ -29,7 +32,10 @@ export interface Props {
   loading?: boolean;
   cardWarning?: boolean;
   id?: string;
-}
+  maxContentHeight?: number;
+  minHeight?: string;
+  customCardStyles?: Record<string, string>;
+};
 
 const defaultProps = {
   accordion: true,
@@ -40,7 +46,7 @@ const defaultProps = {
   cardWarning: false,
 };
 
-export default function Card(props: Readonly<Props>) {
+export function Card(props: CardProps) {
   const mp = mergeProps(defaultProps, props);
 
   const [isExpanded, setIsExpanded] = createSignal(
@@ -53,63 +59,77 @@ export default function Card(props: Readonly<Props>) {
   };
 
   return (
-    <MuiCard raised={mp.raised} sx={cardStyles.card} id={props.id}>
+    <MuiCard
+      raised={mp.raised}
+      sx={{
+        ...cardStyles.card,
+        ...props.customCardStyles,
+      }}
+      id={props.id}
+      style={{ 'min-height': props.minHeight }}
+    >
       <CardHeader
-        sx={cardStyles.cardHeader}
+        class={`!rounded-t-lg !py-[5px] !px-[7px]
+        ${props.bannerHeight ?? ''}
+        ${props.bannerColor ?? 'bg-[#026EA1]'}
+        ${props.textColor ?? 'text-white'}
+        `}
         title={
-          <Grid
-            container
-            spacing={2}
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Grid item sx={cardStyles.gridItem}>
-              <STypography
-                variant="body2"
-                component="span"
-                sx={cardStyles.accordionIcon}
-                onClick={mp.accordion ? handleToggle : undefined}
-              >
-                {mp.accordion &&
-                  (isExpanded() ? (
-                    <ArrowDropDownCircleOutlined />
-                  ) : (
-                    <PlayCircleOutlineOutlined />
-                  ))}
-              </STypography>
-              <STypography
+          <Box class={cardStyles.flexClass}>
+            <Box class={cardStyles.flexClass}>
+              <Show when={mp.accordion}>
+                <Typography
+                  variant="body2"
+                  component="span"
+                  sx={cardStyles.accordionIcon}
+                  onClick={mp.accordion ? handleToggle : undefined}
+                >
+                  <Box>
+                    {isExpanded() ? (
+                      <KeyboardArrowDown />
+                    ) : (
+                      <KeyboardArrowRight />
+                    )}
+                  </Box>
+                </Typography>
+              </Show>
+
+              <Typography
                 variant="body2"
                 component="span"
                 sx={cardStyles.startIcon}
               >
                 {mp.startIcon}
-              </STypography>
-              <STypography variant="body2" component="span" fontSize={'1.3rem'}>
-                {mp.startTitle}
-              </STypography>
-              <span class={classes.startTitleAction}>
-                {mp.startTitleAction}
-              </span>
-            </Grid>
-            <Grid item sx={cardStyles.gridItem}>
-              <STypography
-                variant="body2"
-                component="span"
-                sx={cardStyles.endIcon}
-              >
-                {mp.endIcon}
-              </STypography>
-              <STypography variant="body2" component="span">
+              </Typography>
+              <div class="text-lg font-medium">{mp.startTitle}</div>
+              <div class={classes.startTitleAction}>{mp.startTitleAction}</div>
+            </Box>
+            <Box class={`${cardStyles.flexClass} ml-auto`}>
+              <Show when={mp.endIcon}>
+                <Typography variant="body2" component="span">
+                  {mp.endIcon}
+                </Typography>
+              </Show>
+              <Typography variant="body2" component="span">
                 {mp.endTitle}
-              </STypography>
-            </Grid>
-          </Grid>
+              </Typography>
+            </Box>
+          </Box>
         }
         action={mp.action}
       ></CardHeader>
       <CardContent
-        class={mp.cardWarning ? 'border-[#E09A9A] bg-[#FF5856]/10' : ''}
-        sx={cardStyles.cardContent(isExpanded(), mp.padding)}
+        class={
+          mp.cardWarning
+            ? `border-[#E09A9A] bg-[#FF5856]/10 ${mp.contentClass}`
+            : `bg-[#F2F6F8] ${mp.contentClass}`
+        }
+        // @ts-expect-error  sx type
+        sx={cardStyles.cardContent(
+          isExpanded(),
+          mp.padding,
+          mp.maxContentHeight,
+        )}
       >
         <Show when={!mp.loading} fallback={<CardPlaceholder />}>
           {mp.children}

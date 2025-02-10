@@ -5,7 +5,7 @@ import {
   DialogContentText,
   DialogTitle,
   Slide,
-} from '../common';
+} from '@suid/material';
 import { TransitionProps } from '@suid/material/transitions';
 import {
   Component,
@@ -14,9 +14,9 @@ import {
   mergeProps,
   splitProps,
 } from 'solid-js';
+import { Button } from '../Button';
 
 import { DialogBoxProps } from './types';
-import { Button } from '../Button';
 
 const Transition = function Transition(
   props: TransitionProps & {
@@ -42,6 +42,7 @@ export const DialogBox: Component<DialogBoxProps> = (props: DialogBoxProps) => {
     'onSubmitText',
     'isDialogOpen',
     'closeDialogBox',
+    'onSubmitBtnClass',
   ]);
 
   const [loading, setLoading] = createSignal(false);
@@ -82,14 +83,16 @@ export const DialogBox: Component<DialogBoxProps> = (props: DialogBoxProps) => {
       <DialogActions>
         <Button
           variant="text"
-          label={load.onCancelText!}
+          label={load.onCancelText}
           onClick={handleClose}
         />
         <Button
           variant="contained"
-          label={load.onSubmitText!}
+          label={load.onSubmitText}
           isLoading={loading()}
           onClick={handleSubmit}
+          disabled={loading()}
+          class={props.onSubmitBtnClass}
         />
       </DialogActions>
     </Dialog>

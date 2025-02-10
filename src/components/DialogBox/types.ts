@@ -11,4 +11,5 @@ export type DialogBoxProps = DialogBoxPropsWithoutOpen & {
   onCancelText?: string;
   isDialogOpen: boolean;
   closeDialogBox: () => void;
+  onSubmitBtnClass?: string;
 };

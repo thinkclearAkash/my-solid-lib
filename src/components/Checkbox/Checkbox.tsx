@@ -1,11 +1,8 @@
-import {
-  SCheckbox,
-  FormControlLabel,
-  SxProps,
-} from '../common';
+import { Checkbox as SCheckbox, FormControlLabel } from '@suid/material';
+import { SxProps } from '@suid/system';
 import { splitProps } from 'solid-js';
 
-export type Props = {
+export type CheckboxProps = {
   label: string;
   id?: string;
   disabled?: boolean;
@@ -18,7 +15,7 @@ export type Props = {
   name?: string;
 };
 
-function Checkbox(props: Readonly<Props>) {
+function Checkbox(props: CheckboxProps) {
   const [load, rest] = splitProps(props, [
     'sxProps',
     'color',

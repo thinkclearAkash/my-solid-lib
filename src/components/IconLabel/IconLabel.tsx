@@ -1,12 +1,13 @@
+import { Typography } from '../Typography';
 import { JSX, Show, mergeProps } from 'solid-js';
-import { Typography } from '../index';
 
 export interface IconLabelProps {
   label: string;
   icon?: JSX.Element;
   content: string | JSX.Element;
-  textColorCondition: boolean;
+  textColorCondition?: boolean;
   classes?: string;
+  labelClasses?: string;
   contentClasses?: string;
   showContent?: boolean;
 }
@@ -21,17 +22,9 @@ export const IconLabel = (props: IconLabelProps) => {
   );
 
   const renderLabel = props.label && (
-    <Typography
-      variant="caption"
-      sxProps={{
-        color: '#00000099',
-        fontSize: '14px',
-        fontStyle: 'normal',
-        fontWeight: '400',
-      }}
-    >
+    <div class={`text-[#123b50] text-sm font-bold ${props.labelClasses}`}>
       {props.label}
-    </Typography>
+    </div>
   );
 
   const renderIcon = Boolean(props.icon) && (
@@ -39,6 +32,7 @@ export const IconLabel = (props: IconLabelProps) => {
       style={{
         width: '24px',
         height: '24px',
+        color: '#706E6C',
       }}
       class="flex mr-[8px]"
     >
@@ -51,10 +45,11 @@ export const IconLabel = (props: IconLabelProps) => {
       <Typography
         variant="body1"
         sxProps={{
-          fontSize: '16px',
+          fontSize: '14px',
+          opacity: '0.87',
           fontStyle: 'normal',
           fontWeight: '400',
-          color: props.textColorCondition ? '#026EA1' : '#000000',
+          color: Boolean(props.textColorCondition) ? '#026EA1' : '#000000',
         }}
       >
         {props.content}

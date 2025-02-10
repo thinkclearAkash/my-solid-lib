@@ -1,10 +1,11 @@
+import { FormControl } from '@suid/material';
 import { Component, JSXElement, mergeProps } from 'solid-js';
 
-import { TextInput } from '../TextInput/TextInput';
+import { TextInput } from '../TextInput';
 
-type TextAreaFieldProps = {
+export type TextAreaFieldProps = {
   name?: string;
-  label: string | JSXElement;
+  label?: string | JSXElement;
   value?: string;
   onChange?: (value: string) => void;
   error?: string | string[] | null;
@@ -14,8 +15,15 @@ type TextAreaFieldProps = {
   rows?: number;
   maxRows?: number;
   defaultValue?: string;
-  onBlur?: (ev: HTMLInputElement) => void;
+  onBlur?: (e: FocusEvent) => void;
   maxLength?: number;
+  onKeyPress?: (e: KeyboardEvent) => void;
+  class?: string;
+  shrink?: boolean;
+  backgroundColor?: string;
+  invertPadding?: boolean;
+  inputProps?: Record<string, unknown>;
+  onFocus?: () => void;
 };
 
 export const TextAreaField: Component<TextAreaFieldProps> = (props) => {
@@ -34,19 +42,50 @@ export const TextAreaField: Component<TextAreaFieldProps> = (props) => {
   const mp = mergeProps(defaultProps, props);
 
   return (
-    <TextInput
-      label={mp.label}
-      multiline
-      rows={4}
-      name={mp.name}
-      error={(props.error && props.error.length > 0) ? props.error[0] : ''}
-      placeholder={mp.placeholder}
-      disabled={mp.disabled}
-      required={mp.required}
-      variant="outlined"
-      value={mp.value}
-      onChange={handleInputChange}
-      maxLength={mp.maxLength}
-    />
+    <FormControl
+      fullWidth
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          backgroundColor: props.backgroundColor,
+          ...(Boolean(props.invertPadding)
+            ? {
+                padding: '0',
+                '& > textarea': {
+                  padding: '8.5px 14px',
+                },
+              }
+            : {}),
+        },
+      }}
+    >
+      <TextInput
+        label={mp.label}
+        multiline
+        rows={mp.rows}
+        name={mp.name}
+        onKeyPress={props.onKeyPress}
+        error={Boolean(props.error)}
+        helperText={
+          Array.isArray(props.error) && props.error.length > 0
+            ? props.error[0]
+            : Boolean(props.error)
+              ? props.error
+              : ''
+        }
+        placeholder={mp.placeholder}
+        disabled={mp.disabled}
+        required={mp.required}
+        variant="outlined"
+        value={mp.value}
+        onChange={handleInputChange}
+        onKeyPress={mp.onKeyPress}
+        onFocus={mp.onFocus}
+        maxLength={mp.maxLength}
+        onBlur={mp.onBlur}
+        InputLabelProps={{ shrink: mp.shrink }}
+        classes={mp.class}
+        inputProps={{ maxLength: mp.maxLength, ...mp.inputProps }}
+      />
+    </FormControl>
   );
 };

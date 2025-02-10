@@ -1,4 +1,6 @@
-import { SChip, Avatar, HighlightOffRoundedIcon } from '../common';
+import { Chip as SChip } from '@suid/material';
+import HighlightOffRoundedIcon from '@suid/icons-material/HighlightOffRounded';
+import Avatar from '@suid/material/Avatar';
 import { JSXElement } from 'solid-js';
 
 export type Props = {
@@ -10,7 +12,7 @@ export type Props = {
   deleteIconColor?: string;
   backgroundColor?: string;
   style?: object;
-  variant?: 'outlined' | 'filled';
+  variant: 'outlined' | 'filled';
   isDeleteIcon: boolean;
   color:
     | 'default'
@@ -23,19 +25,29 @@ export type Props = {
   imgPath?: string;
 };
 
-function Chip(props: Readonly<Props>) {
+function Chip({
+  id,
+  text,
+  onClick,
+  onDelete,
+  variant,
+  isDeleteIcon = false,
+  deleteIconColor,
+  color,
+  imgPath,
+}: Props) {
   return (
     <SChip
-      id={props.id}
-      label={props.text}
-      variant={props.variant ?? 'outlined'}
-      onClick={() => props.onClick && props.onClick()}
-      onDelete={() => props.onDelete && props.onDelete()}
-      color={props.color}
-      avatar={props.imgPath && <Avatar src={props.imgPath} />}
+      id={id}
+      label={text}
+      variant={variant}
+      onClick={() => onClick && onClick()}
+      onDelete={() => onDelete && onDelete()}
+      color={color}
+      avatar={(imgPath ?? '') && <Avatar src={imgPath} />}
       deleteIcon={
-        props.isDeleteIcon && (
-          <HighlightOffRoundedIcon style={{ color: props.deleteIconColor }} />
+        isDeleteIcon && (
+          <HighlightOffRoundedIcon style={{ color: deleteIconColor }} />
         )
       }
     />

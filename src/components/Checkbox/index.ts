@@ -1,3 +1,3 @@
-import Checkbox from './Checkbox';
+import Checkbox, { type CheckboxProps } from './Checkbox';
 
-export { Checkbox };
+export { Checkbox, CheckboxProps };
