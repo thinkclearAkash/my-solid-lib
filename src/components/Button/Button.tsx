@@ -9,7 +9,7 @@ import {
 import ArrowDropDown from '@suid/icons-material/ArrowDropDown';
 
 export type Props = {
-  variant?: 'contained' | 'outlined' | 'text' | string;
+  variant?: 'contained' | 'outlined' | 'text';
   size?: 'small' | 'medium' | 'large';
   sx?: SxProps;
   label: string | JSX.Element;
@@ -64,7 +64,7 @@ function Button(props: Readonly<Props>) {
     'disableElevation',
   ]);
 
-  const [anchorEl, setAnchorEl] = createSignal<HTMLButtonElement>(null);
+  const [anchorEl, setAnchorEl] = createSignal<HTMLButtonElement>();
   const [isDropdownOpen, setDropdownOpen] = createSignal(false);
 
   const handleButtonClick = (event: MouseEvent) => {
@@ -111,7 +111,7 @@ function Button(props: Readonly<Props>) {
       </SButton>
       {load.dropdownItems && (
         <Menu
-          anchorEl={anchorEl}
+          anchorEl={anchorEl() as Element}
           open={isDropdownOpen()}
           onClose={() => setDropdownOpen(false)}
         >

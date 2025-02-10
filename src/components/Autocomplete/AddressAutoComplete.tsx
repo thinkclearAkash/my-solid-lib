@@ -144,7 +144,7 @@ const AddressAutoComplete: Component<AddressAutocompleteProps> = (props) => {
     <TextInput
       inputRef={setInputElement}
       value={props.value}
-      onChange={(value) => props.onChange && props.onChange(value as string)}
+      onChange={(value:string) => props.onChange && props.onChange(value)}
       placeholder={props.placeholder}
       variant="outlined"
       label={props.label}
