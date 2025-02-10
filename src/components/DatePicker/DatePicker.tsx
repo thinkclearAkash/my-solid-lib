@@ -65,7 +65,7 @@ export const DatePicker = (props: DatePickerProps) => {
           type={props.type ?? 'date'}
           name={props.name}
           value={formatDate()}
-          onChange={(value) => {
+          onChange={(value: string) => {
             if (props.asRawDate === true) {
               props.handleChange(value as string);
               return;

@@ -20,7 +20,7 @@ export type Props = {
   href?: string;
   dropdownItems?: string[]; // List of items for the dropdown
   onDropdownItemClick?: (item: string) => void; // Callback for dropdown item click
-  type?: string;
+  type?: 'button' | 'submit' | 'reset';
   isLoading?: boolean;
   class?: string;
   title?: string;
