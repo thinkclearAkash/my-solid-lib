@@ -42,7 +42,9 @@ export type TextInputProps = {
   sxProps?: SxProps;
   classes?: string;
   value?: string | number;
-  onChange?:((value: string | number | null | Event) => void)
+  onChange?:
+    | ((value: string | number | null | Event) => void)
+    | ((value: string) => void);
   InputAdornmentPosition?: 'start' | 'end';
   InputAdornmentText?: string;
   startAdornmentFlag?: boolean;
