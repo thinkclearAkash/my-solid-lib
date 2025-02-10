@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@suid/material';
 import { ModalProps } from '@suid/material/Modal';
-import { JSX, mergeProps, splitProps } from 'solid-js';
+import { JSX, mergeProps, splitProps, Component } from 'solid-js';
 
 type ModalPropsWithoutOpen = Omit<ModalProps, 'open'>;
 
@@ -57,7 +57,7 @@ const DEFAULTS = {
   footerContainerClass: 'flex justify-end items-center gap-2 flex-wrap',
 };
 
-export default function Modal(props: BasicModalProps) {
+export const Modal: Component<BasicModalProps>  = (props: BasicModalProps) => {
   props = mergeProps(DEFAULTS, props);
   const [load, rest] = splitProps(props, [
     'id',
