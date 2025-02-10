@@ -21,7 +21,7 @@ export interface TypographyProps {
   variant: TypographyVariant;
   component?: keyof JSX.IntrinsicElements;
   sxProps?: Record<string, string>;
-  children: JSX.Element | unknown;
+  children: JSX.Element | string;
   onClick?: () => void;
   class?: string;
 }
@@ -38,7 +38,7 @@ export const Typography = (props: TypographyProps) => {
   return (
     <STypography
       variant={load.variant}
-      component={load.component}
+      component={load.component ?? 'div'}
       sx={load.sxProps}
       class={load.class}
       {...rest}

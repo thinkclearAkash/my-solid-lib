@@ -11,7 +11,7 @@ import classes from './classes';
 
 type MenuItemType =
   | string
-  | { value: string; label: string; icon?: JSXElement; disabled?: boolean };
+  | { value: string; label: string; icon?: JSXElement | string; disabled?: boolean };
 
 export type MenuWrapperProps = {
   menuItems: MenuItemType[];
@@ -110,7 +110,7 @@ const Menu = (props: MenuWrapperProps) => {
               <>
                 {item.icon && (
                   <ListItemIcon class={classes.listItemIcon}>
-                    <img src={item.icon} alt={item.label} />
+                    <img src={item.icon as string} alt={item.label} />
                   </ListItemIcon>
                 )}
                 <ListItemText class={classes.listItemtext}>

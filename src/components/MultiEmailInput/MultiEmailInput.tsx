@@ -93,7 +93,7 @@ export const MultiEmailInput = ({
         value={newEmail()}
         label={label}
         id={id}
-        onChange={(value) => setNewEmail(value as string)}
+        onChange={(value: string) => setNewEmail(value as string)}
         onKeyPress={handleKeyPress}
         variant={variant}
         disabled={disabled}
