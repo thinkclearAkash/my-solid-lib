@@ -67,7 +67,7 @@ export type TextInputProps = {
   noBackground?: boolean;
   showInCurrencyFormat?: boolean;
   //NOTE: Make the change in the TextInput component to provide a wrapper for this and remove the condition
-  formatAmount: (amount: number, options?: {}, customFallback?: string, showInCurrencyFormat?: boolean) => string;
+  formatAmount?: (amount: number, options?: {}, customFallback?: string, showInCurrencyFormat?: boolean) => string;
 };
 
 export const TextInput: Component<TextInputProps> = (props) => {
@@ -93,7 +93,7 @@ export const TextInput: Component<TextInputProps> = (props) => {
     setValue(() => {
       if (!isFocused() && Boolean(props.showInCurrencyFormat)) {
         if (Boolean(props.value)) {
-          return props.formatAmount(
+          return props.formatAmount && props.formatAmount(
             Number(props.value),
             {},
             '-',
