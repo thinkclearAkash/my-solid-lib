@@ -1,5 +1,5 @@
 import { Box, Typography } from '@suid/material';
-import logo from '@assets/logo.svg';
+import logo from '../../assets/logo.svg';
 
 import classes from './classes';
 

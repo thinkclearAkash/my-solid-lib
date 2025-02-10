@@ -63,7 +63,7 @@ export const TextAreaField: Component<TextAreaFieldProps> = (props) => {
         multiline
         rows={mp.rows}
         name={mp.name}
-        onKeyPress={props.onKeyPress}
+        onKeyPress={mp.onKeyPress}
         error={Boolean(props.error)}
         helperText={
           Array.isArray(props.error) && props.error.length > 0
@@ -78,7 +78,6 @@ export const TextAreaField: Component<TextAreaFieldProps> = (props) => {
         variant="outlined"
         value={mp.value}
         onChange={handleInputChange}
-        onKeyPress={mp.onKeyPress}
         onFocus={mp.onFocus}
         maxLength={mp.maxLength}
         onBlur={mp.onBlur}
