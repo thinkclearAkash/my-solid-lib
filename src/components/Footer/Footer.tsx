@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import { Typography } from '@components';
+import { Typography } from '../Typography';
 
 const footerTextStyle = {
   fontSize: '12px',

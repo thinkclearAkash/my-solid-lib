@@ -1,5 +1,5 @@
 import { JSX, splitProps } from 'solid-js';
-import { STypography } from '../common';
+import { Typography as STypography } from '@suid/material';
 
 export type TypographyVariant =
   | 'inherit'
@@ -21,7 +21,7 @@ export interface TypographyProps {
   variant: TypographyVariant;
   component?: keyof JSX.IntrinsicElements;
   sxProps?: Record<string, string>;
-  children: JSX.Element | string | number;
+  children: JSX.Element | unknown;
   onClick?: () => void;
   class?: string;
 }
@@ -38,7 +38,7 @@ export const Typography = (props: TypographyProps) => {
   return (
     <STypography
       variant={load.variant}
-      component={load.component ?? 'span'}
+      component={load.component}
       sx={load.sxProps}
       class={load.class}
       {...rest}
