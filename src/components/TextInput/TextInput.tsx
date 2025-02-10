@@ -111,7 +111,7 @@ export const TextInput: Component<TextInputProps> = (props) => {
 
   const handleInputChange = (event: Event, value: string) => {
     if (props.type === 'event') {
-      props.onChange?.(event);
+      (props.onChange as (value:Event) => void)?.(event);
     } else {
       if (props.onChange) {
         let finalValue;
@@ -267,7 +267,6 @@ export const TextInput: Component<TextInputProps> = (props) => {
         inputProps: {
           min: props.min,
           max: props.max,
-          'data-testId': props.dataTestId,
           maxLength: props.maxLength,
           ...props.inputProps,
         },
