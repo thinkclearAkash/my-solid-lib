@@ -1,4 +1,3 @@
-import Modal, { BasicModalProps } from './Modal';
+import { Modal, type BasicModalProps } from './Modal';
 
-export { Modal };
-export type { BasicModalProps };
+export { Modal, BasicModalProps };
