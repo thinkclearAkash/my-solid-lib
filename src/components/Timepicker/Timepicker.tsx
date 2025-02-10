@@ -54,7 +54,7 @@ export const TimePicker = (props: TimepickerProps) => {
       inputProps={{
         class: 'timepicker-custom',
       }}
-      onChange={(value) => {
+      onChange={(value:string) => {
         props.onChange(reverseFormatTime(value as string));
       }}
       label=""

@@ -3,6 +3,7 @@ import { InputAdornment, TextField as STextField } from '@suid/material';
 import InputProps from '@suid/material/Input/InputProps';
 import InputLabelProps from '@suid/material/InputLabel/InputLabelProps';
 import { SxProps } from '@suid/system';
+import { isArray } from 'lodash';
 import {
   Component,
   createEffect,
@@ -41,9 +42,7 @@ export type TextInputProps = {
   sxProps?: SxProps;
   classes?: string;
   value?: string | number;
-  onChange?:
-    | ((value: string | number | null | Event) => void)
-    | ((value: string) => void);
+  onChange?:((value: string | number | null | Event) => void)
   InputAdornmentPosition?: 'start' | 'end';
   InputAdornmentText?: string;
   startAdornmentFlag?: boolean;
@@ -109,35 +108,39 @@ export const TextInput: Component<TextInputProps> = (props) => {
   });
 
   const handleInputChange = (event: Event, value: string) => {
-    if (props.onChange) {
-      let finalValue;
-      if (
-        (Boolean(props.maxLength) && value.length < props.maxLength! + 1) ||
-        props.maxLength === undefined
-      ) {
-        if (props.type === 'number') {
-          const decimalIndex = value.indexOf('.');
-          // eslint-disable-next-line max-depth
-          if (props.significantDigits !== undefined) {
+    if (props.type === 'event') {
+      props.onChange?.(event);
+    } else {
+      if (props.onChange) {
+        let finalValue;
+        if (
+          (Boolean(props.maxLength) && value.length < props.maxLength! + 1) ||
+          props.maxLength === undefined
+        ) {
+          if (props.type === 'number') {
+            const decimalIndex = value.indexOf('.');
             // eslint-disable-next-line max-depth
-            if (
-              decimalIndex !== -1 &&
-              value.length - decimalIndex - 1 > props.significantDigits
-            ) {
-              finalValue = value.slice(
-                0,
-                decimalIndex + (props.significantDigits + 1),
-              ); // Slice the string to keep only n digits after the decimal point, we use n+1 here, cause indexes
+            if (props.significantDigits !== undefined) {
+              // eslint-disable-next-line max-depth
+              if (
+                decimalIndex !== -1 &&
+                value.length - decimalIndex - 1 > props.significantDigits
+              ) {
+                finalValue = value.slice(
+                  0,
+                  decimalIndex + (props.significantDigits + 1),
+                ); // Slice the string to keep only n digits after the decimal point, we use n+1 here, cause indexes
+              } else {
+                finalValue = value; // Store the user's input as a string
+              }
             } else {
               finalValue = value; // Store the user's input as a string
             }
           } else {
-            finalValue = value; // Store the user's input as a string
+            finalValue = value;
           }
-        } else {
-          finalValue = value;
+          props.onChange(finalValue);
         }
-        props.onChange(finalValue);
       }
     }
   };
@@ -172,7 +175,7 @@ export const TextInput: Component<TextInputProps> = (props) => {
   return (
     <STextField
       id={props.id}
-      fullWidth={props.fullWidth === undefined ? true : props.fullWidth}
+      fullWidth={props.fullWidth ? props.fullWidth : true}
       inputRef={props.inputRef}
       type={props.type === 'number' ? 'text' : props.type}
       size={props.size || 'small'}
@@ -189,7 +192,7 @@ export const TextInput: Component<TextInputProps> = (props) => {
         !Boolean(props.noErrorMessage)
           ? typeof props.error === 'string'
             ? props.error
-            : props.error?.[0] ?? ''
+            : isArray(props.error) && props.error[0] || ''
           : ''
       }
       onKeyUp={(e: KeyboardEvent) => {
@@ -267,7 +270,7 @@ export const TextInput: Component<TextInputProps> = (props) => {
           ...props.inputProps,
         },
       }}
-      onChange={props.type === 'event' ? props.onChange : handleInputChange}
+      onChange={handleInputChange}
       onFocus={(e) => {
         setIsFocused(true);
         props.onFocus?.(e);
