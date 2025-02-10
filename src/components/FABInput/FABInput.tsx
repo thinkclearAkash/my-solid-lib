@@ -2,14 +2,16 @@ import { Fab, StyledProps } from '@suid/material';
 import CheckCircleIcon from '@suid/icons-material/CheckCircle';
 import { Show, mergeProps } from 'solid-js';
 
-export const FABInput = (props: {
+export type FABInputProps = {
   label: string;
   checked: boolean;
   onClick: () => void;
   iconSize?: string;
   sxProps?: StyledProps;
   class?: string;
-}) => {
+};
+
+export const FABInput = (props: FABInputProps) => {
   const FallbackFab = () => {
     const mp = mergeProps(props, {
       iconSize: '16px',
